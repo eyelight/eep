@@ -33,8 +33,8 @@ type Eeper interface {
 }
 
 // New returns a new Eeper; the I2C bus must be configured prior to calling this
-func New(vals []EEPROMEntry) Eeper {
-	e := at24cx.New(machine.I2C0)
+func New(bus *machine.I2C, vals []EEPROMEntry) Eeper {
+	e := at24cx.New(bus)
 	return &eeper{
 		entries: vals,
 		device:  e,
@@ -87,7 +87,7 @@ func (e *eeper) Is(key string) (*bool, error) {
 	if err != nil {
 		return nil, err
 	}
-	// fail if key is longer than 1
+	// fail if key is longer than 1; we don't want to read a partial value
 	if ee.Length > 1 {
 		return nil, errors.New("(" + key + ") " + ERR_NOT_BOOL_KEY)
 	}
