@@ -1,6 +1,6 @@
 # eep
 
-Eep makes it easy to set up keys of known length for storage on an at24cx eeprom chip.
+Eep makes it easy to set up keys with values of known length for storing on an `at24cx` I2C [eeprom chip](https://ww1.microchip.com/downloads/en/DeviceDoc/doc0336.pdf) *(pdf)* and the [driver](https://github.com/tinygo-org/drivers/tree/release/at24cx) included with TinyGo.
 
 Values on an eeprom chip have a length and an offset. Eep allows you to create a collection of keys with their offsets and lengths. The sum of the current key's offset & length is the next key's offset. Lengths shouldn't be exceeded, so pad as necessary.
 
