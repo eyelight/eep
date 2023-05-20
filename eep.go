@@ -16,7 +16,6 @@ const (
 
 type EEPROMEntry struct {
 	Key    string
-	Value  []byte
 	Offset uint16
 	Length uint16
 }
